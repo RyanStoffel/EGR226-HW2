@@ -1,0 +1,12 @@
+Tools and IP Address Ranges Explanation
+
+For this task, I selected three key Nmap commands to detect vulnerabilities and gain insights into the target network. The chosen IP range is `192.168.0.0/24`, which covers an internal network commonly used in private settings. This range allows us to scan multiple devices in a subnet efficiently and identify active hosts, open ports, and services running on the devices.
+
+The first command, `nmap -sn -PE <target>`, performs a ping scan at the Network layer (Layer 3 of the OSI model). This is useful for identifying active hosts within the IP range. For example, if I target `192.168.0.0/24`, the command will send ICMP echo requests to all devices in the subnet and return a list of active IPs. This helps to quickly determine which devices are currently online without conducting a full port scan.
+
+The second command, `nmap <target> --top-ports 10 --open`, scans for the 10 most commonly used ports at the Transport layer (Layer 4). This focuses on identifying potential entry points into the system, such as ports 80 (HTTP) and 443 (HTTPS). Using the same IP range, this scan narrows the scope to specific vulnerabilities by highlighting which services are accessible.
+
+Finally, the `nmap -sV <target>` command performs service version detection at the Application layer (Layer 7). This scan provides detailed information about the services running on the open ports, including version numbers. With this information, I can check if any services are outdated or vulnerable to known exploits.
+Together, these commands provide a layered approach to vulnerability detection. Starting with a ping scan to identify targets, narrowing down to open ports, and then gathering service details ensures a comprehensive understanding of the network's potential weaknesses. By targeting `192.168.0.0/24`, we maximize coverage for internal systems while minimizing noise on external networks.
+
+This script can be scheduled to run on system startup to casually inspect the local network and identify immediate vulnerabilities, ensuring continuous ggVGysecurity monitoring.
